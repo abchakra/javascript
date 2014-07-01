@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/easeljs/geom/Matrix2D.js"></script>
+<script type="text/javascript" src="js/easeljs/geom/Rectangle.js"></script>
+<script type="text/javascript"
+	src="js/easeljs/events/EventDispatcher.js"></script>
+<script type="text/javascript" src="js/easeljs/utils/UID.js"></script>
+<script type="text/javascript" src="js/easeljs/utils/Ticker.js"></script>
+<script type="text/javascript"
+	src="js/easeljs/utils/SpriteSheetUtils.js"></script>
+<script type="text/javascript" src="js/easeljs/display/DisplayObject.js"></script>
+<script type="text/javascript" src="js/easeljs/display/Container.js"></script>
+<script type="text/javascript" src="js/easeljs/display/Stage.js"></script>
+<script type="text/javascript" src="js/easeljs/display/SpriteSheet.js"></script>
+<script type="text/javascript"
+	src="js/easeljs/display/BitmapAnimation.js"></script>
+<script type="text/javascript" src="js/easeljs/display/Graphics.js"></script>
+<script type="text/javascript" src="js/easeljs/display/Bitmap.js"></script>
+<script type="text/javascript" src="js/easeljs/display/Text.js"></script>
+<span style="font-size: 9pt;"> </span>
+
+
+<title>Insert title here</title>
+</head>
+<body>
+	<canvas id="gameCanvas" width="600" height="100"></canvas>
+</body>
+
+<script type="text/javascript">
+	var stage, image, fpstext;
+	function init() {
+		stage = new createjs.Stage(id("gameCanvas"));
+		image = new createjs.Bitmap("assets/hill.png");
+		stage.addChild(image);
+		createjs.Ticker.setFPS(30);
+		createjs.Ticker.addEventListener("tick", tick);
+		
+		fpstext = new createjs.Text("fps:", "20px Arial", "#7a1567");
+		fpstext.x = 0;
+		fpstext.y = 20;
+		stage.addChild(fpstext);
+		
+		
+	}
+	function tick() {
+		image.x += 10;
+		if (image.x > 600)
+			image.x = 0;
+		stage.update();
+		
+		fpstext.text = Math.round(createjs.Ticker.getMeasuredFPS()) + " fps"; 
+	}
+</script>
+</html>
